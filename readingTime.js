@@ -1,7 +1,7 @@
 /*!
 
 Name: Reading Time
-Author: Justin Beaudry (rewrite of Michael Lynch'settings original)
+Author: Justin Beaudry (rewrite of Michael Lynch's original, removed jQuery)
 Author URL: http://justinbeaudry.com
 Date Created: August 14, 2013
 Date Updated: October 27, 2015
