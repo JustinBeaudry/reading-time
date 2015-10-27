@@ -25,57 +25,16 @@ Optionally you can also create an element with whatever class or ID you want to 
 	<div class="word-count"></div>
 </article>
 ```
-    
-Initialize the plugin targeting the class, ID or element that contains the text in which you want to estimate the reading time of. 
 
-```js
-$('article').readingTime();
-```
-	
 ####Options
 
-<ol>
-  <li>
-  readingTimeTarget: "id / class / element"
-  <br />A string that defines the ID, class or element that will store the estimated reading time (default: 'eta').
-  </li>
-
-  <li>wordCountTarget: "id / class / element"
-  <br />A string that defines the ID, class or element that will store the total word count (default: '').
-  </li>
-
-  <li>remotePath: "path"
-  <br />A string that indicates the path to the remote file (default: null).
-  </li>
-
-  <li>remoteTarget: "id / class / element"
-  <br />A string that defines the ID, class or element in the remote file that contains the text in which you want to estimate the reading time of (default: null).
-  </li>
-
-  <li>wordsPerMinute: integer
-  <br />An integer that defines the words per minute at which to calculate the estimated reading time (default: 270).
-  </li>
-
-  <li>round: boolean
-  <br />A boolean value that indicates whether or not the estimated reading time should be rounded to the closest minute (default: true).
-  </li>
-
-  <li>lang: "en / fr / de / es / nl / sk / cz"
-  <br />A two letter string that indicates the language to be used (default: "en").
-  </li>
-
-  <li>lessThanAMinuteString: string
-  <br />A string that changes the default "Less than a minute" copy (default: '').
-  </li>
-
-  <li>prependTimeString: string
-  <br />A string that is prepended before the estimated reading time (default: '').
-  </li>
-
-  <li>prependWordString: string
-  <br />A string that is prepended before the total word count (default: '').
-  </li>
-</ol>
+* readingTimeTarget:  element to store the estimated reading time
+* wordCountTarget:  element to store the total word count
+* remotePath:  path to remote file
+* remoteTarget:  target element
+* wordsPerMinute:  WPM as part of the calculation (defaults: 270)
+* round:  round up
+* lang:  en/fr/de/es/nl/sk/cz
 
 #####Example:
 
