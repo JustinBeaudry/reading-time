@@ -1,30 +1,16 @@
 <!doctype html>
-
-<html>
-
+<html lang="en">
 	<head>
-	
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
 		<meta charset="utf-8">
-	
 		<title>Reading Time jQuery Plugin</title>
-		
 		<meta name="description" content="A simple, lightweight jQuery plugin used to display an estimated time to read some text.">
-		
 		<meta name="author" content="http://michaelynch.com">
-	
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
 		<!-- for pesentation only -->
 		<link rel="stylesheet" type="text/css" media="screen" href="../src/css/style.css">
-		
-		</style>
-		
 	</head>
-
-	<body lang="en">
-
+	<body>
 		<article class="article">
 		
 			<h1>Dethroning King Coal</h1>
@@ -84,37 +70,18 @@
 			natural gas itself is not sustainable in the long term. Right now, ending investment in the coal industry is the right thing to do.</p>
 			
 		</article>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-	
-		<script type="text/javascript">
-		if (typeof jQuery == 'undefined') {
-		    document.write(unescape("%3Cscript src='../src/lib/jquery.1.9.1.min.js' type='text/javascript'%3E%3C/script%3E"));
-		}
-		</script>
-		
-		<script src="../src/readingTime.js"></script>
-		
-		<script>
-		
-			$(function() {
-			
-				$('article').readingTime({
-					readingTimeTarget: $(this).find('.eta'),
-					wordCountTarget: $(this).find('.words'),
-					success: function() {
-						console.log('It worked!');
-					},
-					error: function(message) {
-						console.log(message);
-						$(this).find('.eta').remove();
-					}
-				});
-				
-			});
-		
-		</script>
 
+		<script src="../readingTime.js"></script>
+		<script>
+			(function(window) {
+				window.addEventListener('DOMContentLoaded', function() {
+					window.readingTime('article', {
+						readingTimeTarget: '.eta',
+						wordCountTarget: '.words'
+					});
+				});
+
+			})(this);
+		</script>
 	</body>
-	
 </html>
