@@ -2,8 +2,9 @@
 
 Inspired by [Medium](http://medium.com), Reading Time is a simple, javascript snippet used to display an estimated time to read some text.
 
-##Instructions
+Fork of https://github.com/michael-lynch/reading-time, rewritten to remove jquery
 
+##Instructions
 
 Create an element with the class of 'eta' where the estimated reading time will display.
 
