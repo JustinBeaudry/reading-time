@@ -21,7 +21,6 @@ Optionally you can also create an element with whatever class or ID you want to 
 ```html
 <article>
 	<div class="eta"></div>
-	
 	<div class="word-count"></div>
 </article>
 ```
@@ -40,7 +39,6 @@ Optionally you can also create an element with whatever class or ID you want to 
 
 ```js
 (function() {
-	var $article = $('article');
 	window.addEventListener('DOMContentLoaded', function() {
 		window.readingTime('article', {
       readingTimeTarget: '.reading-time',
