@@ -38,7 +38,7 @@ Optionally you can also create an element with whatever class or ID you want to 
 #####Example:
 
 ```js
-(function() {
+(function(window) {
 	window.addEventListener('DOMContentLoaded', function() {
 		window.readingTime('article', {
       readingTimeTarget: '.reading-time',
@@ -48,5 +48,5 @@ Optionally you can also create an element with whatever class or ID you want to 
       lang: 'fr'
 		});
 	});
-});
+})(this);
 ```
