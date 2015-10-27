@@ -83,11 +83,11 @@ $('article').readingTime();
 	var $article = $('article');
 	window.addEventListener('DOMContentLoaded', function() {
 		window.readingTime('article', {
-      readingTimeTarget: .reading-time',
+      readingTimeTarget: '.reading-time',
       wordCountTarget: '.word-count',
       wordsPerMinute: 275,
       round: false,
-      lang: 'fr',
+      lang: 'fr'
 		});
 	});
 });
