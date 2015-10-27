@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89a6437c-f175-4838-8bd5-bf38c5c6054e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/readingTime.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reading-time.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/jquery.1.9.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/readingTime.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE.md" afterPath="$PROJECT_DIR$/LICENSE.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/articles/a.html" afterPath="$PROJECT_DIR$/demo/articles/a.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/articles/b.html" afterPath="$PROJECT_DIR$/demo/articles/b.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/articles/c.html" afterPath="$PROJECT_DIR$/demo/articles/c.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/index.html" afterPath="$PROJECT_DIR$/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/remote-multiple.html" afterPath="$PROJECT_DIR$/demo/remote-multiple.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/remote.html" afterPath="$PROJECT_DIR$/demo/remote.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="reading-time.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,11 +45,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="remote-multiple.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="remote-multiple.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/remote-multiple.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24324325">
+            <state vertical-scroll-proportion="-10.956522">
               <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="markdown-preview-editor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.148148">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0154696135">
+              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -111,6 +124,8 @@
         <option value="$PROJECT_DIR$/demo/remote.html" />
         <option value="$PROJECT_DIR$/demo/remote-multiple.html" />
         <option value="$PROJECT_DIR$/demo/index.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -352,8 +367,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/remote-multiple.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24324325">
+        <state vertical-scroll-proportion="-10.956522">
           <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="markdown-preview-editor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.148148">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0154696135">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
           <folding />
         </state>
       </provider>
