@@ -1,19 +1,17 @@
 /*!
-
-Name: Reading Time
-Author: Justin Beaudry (rewrite of Michael Lynch's original, removed jQuery)
-Author URL: http://justinbeaudry.com
-Date Created: August 14, 2013
-Date Updated: October 27, 2015
-Licensed under the MIT license
-
+	Name: Reading Time
+	Author: Justin Beaudry (rewrite of Michael Lynch's original, removed jQuery)
+	Author URL: http://justinbeaudry.com
+	Date Created: August 14, 2013
+	Date Updated: October 27, 2015
+	Licensed under the MIT license
 */
 
 (function(window) {
 
 	var document = window.document;
 
-	window.readingTime = function(element, options) {
+	window.readingTime = function(element, options, callback) {
 
 		var defaults = {
 			readingTimeTarget: '.eta',
@@ -27,6 +25,7 @@ Licensed under the MIT license
 			remotePath: null,
 			remoteTarget: null
 		},
+		// NodeList
 		el = $element(element, true),
 		settings = (function() {
 			var extended = {}, prop;
@@ -42,8 +41,11 @@ Licensed under the MIT license
 			}
 			return extended;
 		})(),
-		readingTimeTarget = $element(settings.readingTimeTarget),
-		wordCountTarget = $element(settings.wordCountTarget);
+		domTarget = {
+			time: $element(settings.readingTimeTarget),
+			count: $element(settings.wordCountTarget),
+			remote: settings.remoteTarget ? $element(settings.remoteTarget) : null
+		};
 
 		if (!el.length) {
 			console.error(el, 'is empty.');
@@ -52,103 +54,97 @@ Licensed under the MIT license
 		var lessThanAMinute, minShortForm;
 		// Italian
 		if (settings.lang === 'it') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Meno di un minuto";
 			minShortForm = 'min';
-
 		// French
 		} else if (settings.lang === 'fr') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Moins d'une minute";
 			minShortForm = 'min';
-
 		// German
 		} else if (settings.lang == 'de') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Weniger als eine Minute";
 			minShortForm = 'min';
-
 		// Spanish
 		} else if (settings.lang == 'es') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Menos de un minuto";
 			minShortForm = 'min';
-
 		// Dutch
 		} else if (settings.lang == 'nl') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Minder dan een minuut";
 			minShortForm = 'min';
-
 		// Slovak
 		} else if (settings.lang == 'sk') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Menej než minútu";
 			minShortForm = 'min';
-
 		// Czech
 		} else if (settings.lang == 'cz') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Méně než minutu";
 			minShortForm = 'min';
-
 		// Hungarian
 		} else if (settings.lang == 'hu') {
-
 			lessThanAMinute = settings.lessThanAMinuteString || "Kevesebb mint egy perc";
 			minShortForm = 'perc';
-
 		// English
 		} else {
-
 			lessThanAMinute = settings.lessThanAMinuteString || 'Less than a minute';
 			minShortForm = 'min';
 		}
         
 		function setTime(text) {
 
-			var totalWords, wordsPerSecond, totalReadingTimeSeconds,
-				readingTimeMinutes, readingTimeSeconds, readingTime;
-
+			var output = {
+				totalWords: null,
+				wordsPerSecond: null,
+				readingTime: null,
+				minutes: null,
+				seconds: null,
+				totalSeconds: null
+			};
 
 			if (typeof text === 'string' && text !== '') {
 
-				totalWords = text.trim().split(/\s+/g).length;
-				wordsPerSecond = settings.wordsPerMinute / 60;
-				totalReadingTimeSeconds = totalWords / wordsPerSecond;
+				output.totalWords = text.trim().split(/\s+/g).length;
+				output.wordsPerSecond = settings.wordsPerMinute / 60;
+				output.time.seconds = output.totalWords / output.wordsPerSecond;
 
 				if (settings.round === true) {
-					readingTimeMinutes = Math.round(totalReadingTimeSeconds / 60);
+					output.time.minues = Math.round(output.totalSeconds / 60);
 				} else {
-					readingTimeMinutes = Math.floor(totalReadingTimeSeconds / 60);
+					output.time.minutes = Math.floor(output.totalSeconds / 60);
 				}
 
-				readingTimeSeconds = Math.round(totalReadingTimeSeconds - readingTimeMinutes * 60);
+				output.time.seconds = Math.round(output.totalSeconds - output.minutes * 60);
 
 				if (settings.round === true) {
 
-					if (readingTimeMinutes > 0) {
-						readingTimeTarget.textContent = settings.prependTimeString + readingTimeMinutes + ' ' + minShortForm;
+					if (output.time.minutes > 0) {
+						domTarget.time.textContent = settings.prependTimeString + output.minutes + ' ' + minShortForm;
 					} else {
-						readingTimeTarget.textContent = settings.prependTimeString + lessThanAMinute;
+						domTarget.time.textContent = settings.prependTimeString + lessThanAMinute;
 					}
 				} else {
-					readingTime = readingTimeMinutes + ':' + readingTimeSeconds;
-					readingTimeTarget.textContent = settings.prependTimeString + readingTime;
+					output.readingTime = output.minutes + ':' + output.seconds;
+					domTarget.time.textContent = settings.prependTimeString + output.readingTime;
 				}
 
 				if (settings.wordCountTarget !== '' && settings.wordCountTarget !== undefined) {
-					wordCountTarget.textContent = settings.prependWordString + totalWords;
+					domTarget.count.textContent = settings.prependWordString + output.totalWords;
 				}
 
+				if (typeof callback === 'function') {
+					callback({
+						totalWords: output.totalWords,
+						readingTime: output.minutes > 0 ? lessThanAMinute : ' ' + output.minutes + ' ' + minShortForm
+					});
+				}
 			} else {
-				console.error('The element is empty.');
+				console.error('[readingTime] The target element is empty.');
 			}
 		}
 
 		Array.prototype.forEach.call(el, function($el) {
 			var request;
-			if (settings.remotePath !== null && settings.remoteTarget !== null) {
+			if (domTarget.remote !== null) {
 				request = new XMLHttpRequest();
 				request.open('GET', settings.remotePath, true);
 				request.onload = function() {
@@ -156,11 +152,11 @@ Licensed under the MIT license
 					if (request.status >= 200 && request.status < 400) {
 						div = document.createElement('div');
 						div.innerHTML = request.responseText;
-						setTime(document.querySelector(settings.remoteTarget).textContent);
+						setTime(domTarget.remote.textContent);
 					}
 				};
 				request.onerror = function() {
-					console.error('There was an error connecting to', settings.remotePath);
+					console.error('[readingTime] There was an error connecting to', settings.remotePath);
 				};
 				request.send();
 			} else {
@@ -169,13 +165,14 @@ Licensed under the MIT license
 		});
 	};
 
-	function $element(element, list) {
+	function $element(element, returnNodeList) {
 		if (typeof element === 'object') {
 			return element;
 		} else {
-			if (list) {
+			if (returnNodeList) {
 				return document.querySelectorAll(element);
 			} else {
+				// return Node
 				return document.querySelector(element);
 			}
 		}
