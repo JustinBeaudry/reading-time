@@ -1,33 +1,27 @@
-/*!
-
+/*
 Name: Reading Time
 Author: Justin Beaudry (rewrite of Michael Lynch's original, removed jQuery)
 Author URL: http://justinbeaudry.com
 Date Created: August 14, 2013
-Date Updated: October 27, 2015
+Date Updated: June 2, 2017
 Licensed under the MIT license
-
 */
 
 (function(window) {
 
-	var document = window.document;
-
-	window.readingTime = function(element, options) {
+	window.readingTime = function readingTime(text, options) {
 
 		var defaults = {
 			readingTimeTarget: '.eta',
 			wordCountTarget: null,
-			wordsPerMinute: 270,
+			// average adult reads 250 WPM
+			wordsPerMinute: 250,
 			round: true,
 			lang: 'en',
 			lessThanAMinuteString: '',
 			prependTimeString: '',
-			prependWordString: '',
-			remotePath: null,
-			remoteTarget: null
+			prependWordString: ''
 		},
-		el = $element(element, true),
 		settings = (function() {
 			var extended = {}, prop;
 			for (prop in defaults) {
@@ -41,15 +35,10 @@ Licensed under the MIT license
 				}
 			}
 			return extended;
-		})(),
-		readingTimeTarget = $element(settings.readingTimeTarget),
-		wordCountTarget = $element(settings.wordCountTarget);
+		})(), lessThanAMinute, minShortForm;
 
-		if (!el.length) {
-			console.error(el, 'is empty.');
-		}
+		// Language Text Options
 
-		var lessThanAMinute, minShortForm;
 		// Italian
 		if (settings.lang === 'it') {
 
@@ -63,37 +52,37 @@ Licensed under the MIT license
 			minShortForm = 'min';
 
 		// German
-		} else if (settings.lang == 'de') {
+		} else if (settings.lang === 'de') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Weniger als eine Minute";
 			minShortForm = 'min';
 
 		// Spanish
-		} else if (settings.lang == 'es') {
+		} else if (settings.lang === 'es') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Menos de un minuto";
 			minShortForm = 'min';
 
 		// Dutch
-		} else if (settings.lang == 'nl') {
+		} else if (settings.lang === 'nl') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Minder dan een minuut";
 			minShortForm = 'min';
 
 		// Slovak
-		} else if (settings.lang == 'sk') {
+		} else if (settings.lang === 'sk') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Menej než minútu";
 			minShortForm = 'min';
 
 		// Czech
-		} else if (settings.lang == 'cz') {
+		} else if (settings.lang === 'cz') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Méně než minutu";
 			minShortForm = 'min';
 
 		// Hungarian
-		} else if (settings.lang == 'hu') {
+		} else if (settings.lang === 'hu') {
 
 			lessThanAMinute = settings.lessThanAMinuteString || "Kevesebb mint egy perc";
 			minShortForm = 'perc';
@@ -108,10 +97,7 @@ Licensed under the MIT license
 		function setTime(text) {
 
 			var totalWords, wordsPerSecond, totalReadingTimeSeconds,
-				readingTimeMinutes, readingTimeSeconds, readingTime;
-
-
-			if (typeof text === 'string' && text !== '') {
+				readingTimeMinutes, readingTimeSeconds, readingTime, results = {};
 
 				totalWords = text.trim().split(/\s+/g).length;
 				wordsPerSecond = settings.wordsPerMinute / 60;
@@ -128,56 +114,23 @@ Licensed under the MIT license
 				if (settings.round === true) {
 
 					if (readingTimeMinutes > 0) {
-						readingTimeTarget.textContent = settings.prependTimeString + readingTimeMinutes + ' ' + minShortForm;
+						results.readingTime = settings.prependTimeString + readingTimeMinutes + ' ' + minShortForm;
 					} else {
-						readingTimeTarget.textContent = settings.prependTimeString + lessThanAMinute;
+					  results.readingTime = settings.prependTimeString + lessThanAMinute;
 					}
 				} else {
 					readingTime = readingTimeMinutes + ':' + readingTimeSeconds;
-					readingTimeTarget.textContent = settings.prependTimeString + readingTime;
+					results.readingtime = settings.prependTimeString + readingTime;
 				}
 
-				if (settings.wordCountTarget !== '' && settings.wordCountTarget !== undefined) {
-					wordCountTarget.textContent = settings.prependWordString + totalWords;
+				// JS will coerce values into null here, so we use 'double' equals on purpose
+				if (settings.wordCountTarget != null && settings.wordCountTarget !== '') {
+					results.wordCount = settings.prependWordString + totalWords;
 				}
 
-			} else {
-				console.error('The element is empty.');
-			}
+				return results;
 		}
 
-		Array.prototype.forEach.call(el, function($el) {
-			var request;
-			if (settings.remotePath !== null && settings.remoteTarget !== null) {
-				request = new XMLHttpRequest();
-				request.open('GET', settings.remotePath, true);
-				request.onload = function() {
-					var div;
-					if (request.status >= 200 && request.status < 400) {
-						div = document.createElement('div');
-						div.innerHTML = request.responseText;
-						setTime(document.querySelector(settings.remoteTarget).textContent);
-					}
-				};
-				request.onerror = function() {
-					console.error('There was an error connecting to', settings.remotePath);
-				};
-				request.send();
-			} else {
-				setTime($el.textContent);
-			}
-		});
+		return setTime(text);
 	};
-
-	function $element(element, list) {
-		if (typeof element === 'object') {
-			return element;
-		} else {
-			if (list) {
-				return document.querySelectorAll(element);
-			} else {
-				return document.querySelector(element);
-			}
-		}
-	}
 })(this);
