@@ -28,8 +28,6 @@ $element.text = timing.readingTime;
 
 ##Options##
 
-* readingTimeTarget:  element to store the estimated reading time
-* wordCountTarget:  element to store the total word count
 * wordsPerMinute:  WPM as part of the calculation (defaults: 270)
 * round:  round up
 * lang:  en/fr/de/es/nl/sk/cz
