@@ -31,17 +31,3 @@ $element.text = timing.readingTime;
 * wordsPerMinute:  WPM as part of the calculation (defaults: 270)
 * round:  round up
 * lang:  en/fr/de/es/nl/sk/cz
-
-##Example:##
-
-```js
-(function(window) {
-	window.addEventListener('DOMContentLoaded', function() {
-		window.readingTime('article', {
-      wordsPerMinute: 275,
-      round: false,
-      lang: 'fr'
-		});
-	});
-})(this);
-```
