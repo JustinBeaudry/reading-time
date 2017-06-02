@@ -1,10 +1,11 @@
-#Reading Time
+Reading Time
+============
 
 Inspired by [Medium](http://medium.com), Reading Time is a simple, javascript snippet used to display an estimated time to read some text.
 
-Fork of https://github.com/michael-lynch/reading-time, rewritten to remove jquery
+Rewrite of https://github.com/michael-lynch/reading-time (removes jquery and DOM manipulation, usable in Nodejs as well)
 
-##Usage
+##Usage##
 
 ```js
 
@@ -25,7 +26,7 @@ $element.text = timing.readingTime;
 
 ```
 
-####Options
+##Options##
 
 * readingTimeTarget:  element to store the estimated reading time
 * wordCountTarget:  element to store the total word count
@@ -33,7 +34,7 @@ $element.text = timing.readingTime;
 * round:  round up
 * lang:  en/fr/de/es/nl/sk/cz
 
-#####Example:
+##Example:##
 
 ```js
 (function(window) {
