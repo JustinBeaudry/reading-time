@@ -1,0 +1,21 @@
+{
+  "name": "reading_time",
+  "description": "display medium style read times for blocks of text",
+  "main": "readingTime.js",
+  "authors": [
+    "Justin Beaudry <beaudry.justin@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "medium",
+    "count"
+  ],
+  "homepage": "https://github.com/JustinBeaudry/Reading-time",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
