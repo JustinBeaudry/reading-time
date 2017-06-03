@@ -1,0 +1,23 @@
+{
+  "name": "reading_time",
+  "version": "1.0.0",
+  "description": "display medium style read times for blocks of text",
+  "main": "readingTime.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinBeaudry/Reading-time.git"
+  },
+  "keywords": [
+    "medium",
+    "count"
+  ],
+  "author": "Justin Beaudry <beaudry.justin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JustinBeaudry/Reading-time/issues"
+  },
+  "homepage": "https://github.com/JustinBeaudry/Reading-time#readme"
+}
