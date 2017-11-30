@@ -166,7 +166,7 @@
 	};
 
 	function $element(element, returnNodeList) {
-		if (typeof element === 'object') {
+		if (element instanceof Node || element instanceof NodeList) {
 			return element;
 		} else {
 			if (returnNodeList) {
